@@ -256,5 +256,113 @@
     "userVars": [],
     "notes": "Gate operation with opening/closing states updated from inputs that are active when the gate is fully closed, and fully opened.",
     "targetSlot": 0
+  },
+  {
+    "name": "Untitled Machine",
+    "targetSlot": 0,
+    "initialState": "s_w4he1fw",
+    "states": [
+      {
+        "id": "s_w4he1fw",
+        "name": "Idle",
+        "x": 70,
+        "y": 141,
+        "entry": [
+          {
+            "kind": 4,
+            "target": 0
+          }
+        ],
+        "exit": []
+      },
+      {
+        "id": "s_2aypak9",
+        "name": "Not idle",
+        "x": 70,
+        "y": 261,
+        "entry": [
+          {
+            "kind": 4,
+            "target": 0
+          }
+        ],
+        "exit": []
+      }
+    ],
+    "transitions": [
+      {
+        "id": "t_a2wprb4",
+        "from": "s_w4he1fw",
+        "to": "s_2aypak9",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "eventType": 1,
+        "srcType": 2,
+        "srcIdent": 16777215,
+        "tgtType": 2,
+        "tgtIdent": 16777215,
+        "phraseMode": 0,
+        "phraseIgnoreCase": false,
+        "minInterval": 0,
+        "timerId": 0,
+        "inputN": 1,
+        "edge": 0,
+        "guards": [],
+        "actions": []
+      },
+      {
+        "id": "t_3az0rcf",
+        "from": "s_2aypak9",
+        "to": "s_w4he1fw",
+        "sourceHandle": "right",
+        "targetHandle": "right",
+        "eventType": 1,
+        "srcType": 2,
+        "srcIdent": 16777215,
+        "tgtType": 2,
+        "tgtIdent": 16777215,
+        "phraseMode": 0,
+        "phraseIgnoreCase": false,
+        "minInterval": 0,
+        "timerId": 0,
+        "inputN": 1,
+        "edge": 0,
+        "guards": [],
+        "actions": [],
+        "curveDelta": 76.13793103448275,
+        "labelT": 0.4833333333333333
+      }
+    ],
+    "keywords": [
+      "OPEN",
+      "CLOSE"
+    ],
+    "timers": [
+      50
+    ],
+    "inputLabels": [
+      "Input 1",
+      "Input 2",
+      "Input 3"
+    ],
+    "outputLabels": [
+      "Output 1",
+      "Output 2",
+      "Output 3"
+    ],
+    "timerLabels": [
+      "Timer 1"
+    ],
+    "userVars": [],
+    "edgeTerms": [
+      "Activated",
+      "Deactivated",
+      "all"
+    ],
+    "stateTerms": [
+      "Low",
+      "High"
+    ],
+    "notes": ""
   }
 ]
