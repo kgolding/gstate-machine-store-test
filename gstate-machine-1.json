@@ -1,0 +1,260 @@
+[
+  {
+    "name": "Example 3: Gate operation via button and/or text message",
+    "deviceId": 1,
+    "initialState": "s_m516bu5",
+    "states": [
+      {
+        "id": "s_m516bu5",
+        "name": "Closed",
+        "x": 30,
+        "y": -498.5,
+        "entry": [],
+        "exit": []
+      },
+      {
+        "id": "s_xn6zgmv",
+        "name": "Opening",
+        "x": 17.5,
+        "y": -344.5,
+        "entry": [
+          {
+            "kind": 1,
+            "target": 1
+          }
+        ],
+        "exit": []
+      },
+      {
+        "id": "s_s9a85ne",
+        "name": "Open",
+        "x": 30,
+        "y": -198.5,
+        "entry": [],
+        "exit": []
+      },
+      {
+        "id": "s_8cxrp0s",
+        "name": "Closing",
+        "x": 17,
+        "y": -44.5,
+        "entry": [
+          {
+            "kind": 2,
+            "target": 1
+          }
+        ],
+        "exit": []
+      }
+    ],
+    "transitions": [
+      {
+        "id": "t_51et3yp",
+        "from": "s_m516bu5",
+        "to": "s_xn6zgmv",
+        "sourceHandle": "bottom",
+        "targetHandle": "top-left",
+        "eventType": 0,
+        "srcType": 2,
+        "srcIdent": 16777215,
+        "tgtType": 1,
+        "tgtIdent": 500,
+        "phraseMode": 0,
+        "phraseIgnoreCase": true,
+        "minInterval": 0,
+        "timerId": 0,
+        "inputN": 1,
+        "edge": 0,
+        "guards": [],
+        "actions": [],
+        "phraseId": 0,
+        "curveDelta": 56.46188622335394,
+        "labelT": 0.3947675639532242
+      },
+      {
+        "id": "t_xuqcqdx",
+        "from": "s_xn6zgmv",
+        "to": "s_s9a85ne",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "eventType": 2,
+        "srcType": 2,
+        "srcIdent": 16777215,
+        "tgtType": 2,
+        "tgtIdent": 16777215,
+        "phraseMode": 0,
+        "phraseIgnoreCase": false,
+        "minInterval": 0,
+        "timerId": 0,
+        "inputN": 1,
+        "edge": 0,
+        "guards": [],
+        "actions": [],
+        "curveDelta": -0.843562882793016,
+        "labelT": 0.2507145681014012
+      },
+      {
+        "id": "t_znzmz38",
+        "from": "s_s9a85ne",
+        "to": "s_8cxrp0s",
+        "sourceHandle": "bottom",
+        "targetHandle": "top",
+        "eventType": 0,
+        "srcType": 2,
+        "srcIdent": 16777215,
+        "tgtType": 1,
+        "tgtIdent": 500,
+        "phraseMode": 0,
+        "phraseIgnoreCase": true,
+        "minInterval": 0,
+        "timerId": 0,
+        "inputN": 1,
+        "edge": 0,
+        "guards": [],
+        "actions": [],
+        "phraseId": 1,
+        "curveDelta": 72,
+        "labelT": 0.2533246733469541
+      },
+      {
+        "id": "t_fxarx56",
+        "from": "s_8cxrp0s",
+        "to": "s_m516bu5",
+        "sourceHandle": "left",
+        "targetHandle": "left",
+        "eventType": 2,
+        "srcType": 2,
+        "srcIdent": 16777215,
+        "tgtType": 2,
+        "tgtIdent": 16777215,
+        "phraseMode": 0,
+        "phraseIgnoreCase": false,
+        "minInterval": 0,
+        "timerId": 0,
+        "inputN": 2,
+        "edge": 0,
+        "guards": [],
+        "actions": [],
+        "curveDelta": -118.8793979833805,
+        "labelT": 0.11644411755740586
+      },
+      {
+        "id": "t_ocid1a7",
+        "from": "s_s9a85ne",
+        "to": "s_m516bu5",
+        "sourceHandle": "left",
+        "targetHandle": "left",
+        "eventType": 2,
+        "srcType": 2,
+        "srcIdent": 16777215,
+        "tgtType": 2,
+        "tgtIdent": 16777215,
+        "phraseMode": 0,
+        "phraseIgnoreCase": false,
+        "minInterval": 0,
+        "timerId": 0,
+        "inputN": 2,
+        "edge": 1,
+        "guards": [],
+        "actions": [],
+        "curveDelta": -33.48189940475217,
+        "labelT": 0.16773148408051622
+      },
+      {
+        "id": "t_jl13cjp",
+        "from": "s_m516bu5",
+        "to": "s_s9a85ne",
+        "sourceHandle": "right",
+        "targetHandle": "right",
+        "eventType": 2,
+        "srcType": 2,
+        "srcIdent": 16777215,
+        "tgtType": 2,
+        "tgtIdent": 16777215,
+        "phraseMode": 0,
+        "phraseIgnoreCase": false,
+        "minInterval": 0,
+        "timerId": 0,
+        "inputN": 1,
+        "edge": 0,
+        "guards": [],
+        "actions": [],
+        "curveDelta": -601.5811596545294,
+        "labelT": 0.20374226259183673
+      },
+      {
+        "id": "t_glxgtxq",
+        "from": "s_m516bu5",
+        "to": "s_xn6zgmv",
+        "sourceHandle": "corner-bottom-right",
+        "targetHandle": "top-right",
+        "eventType": 2,
+        "srcType": 2,
+        "srcIdent": 16777215,
+        "tgtType": 2,
+        "tgtIdent": 16777215,
+        "phraseMode": 0,
+        "phraseIgnoreCase": false,
+        "minInterval": 0,
+        "timerId": 0,
+        "inputN": 3,
+        "edge": 0,
+        "guards": [],
+        "actions": [],
+        "curveDelta": -47.03362409984835,
+        "labelT": 0.5759853124765822
+      },
+      {
+        "id": "t_hhjg4vu",
+        "from": "s_s9a85ne",
+        "to": "s_8cxrp0s",
+        "sourceHandle": "corner-bottom-right",
+        "targetHandle": "corner-top-right",
+        "eventType": 2,
+        "srcType": 2,
+        "srcIdent": 16777215,
+        "tgtType": 2,
+        "tgtIdent": 16777215,
+        "phraseMode": 0,
+        "phraseIgnoreCase": false,
+        "minInterval": 0,
+        "timerId": 0,
+        "inputN": 3,
+        "edge": 0,
+        "guards": [],
+        "actions": [],
+        "curveDelta": -50,
+        "labelT": 0.528460743856644
+      }
+    ],
+    "keywords": [
+      "OPEN",
+      "CLOSE",
+      "RSSI: {rssi}\nVOLTS: {volts}\nTempC: {tempc}"
+    ],
+    "timers": [],
+    "inputLabels": [
+      "Gate opened input",
+      "Gate closed input",
+      "Operate gate button"
+    ],
+    "outputLabels": [
+      "Gate control relay",
+      "Output 2",
+      "Output 3"
+    ],
+    "timerLabels": [],
+    "edgeTerms": [
+      "activated",
+      "deactivated",
+      "all"
+    ],
+    "stateTerms": [
+      "Low",
+      "High"
+    ],
+    "userVars": [],
+    "notes": "Gate operation with opening/closing states updated from inputs that are active when the gate is fully closed, and fully opened.",
+    "targetSlot": 0
+  }
+]
