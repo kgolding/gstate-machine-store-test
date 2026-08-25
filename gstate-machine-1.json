@@ -5,16 +5,29 @@
       "CLOSE",
       "RSSI: {rssi}\nVOLTS: {volts}\nTempC: {tempc}"
     ],
-    "userVars": [],
+    "userVars": [
+      {
+        "name": "Var 1"
+      },
+      {
+        "name": "Var 1"
+      },
+      {
+        "name": "Var 1"
+      },
+      {
+        "name": "Var 1"
+      }
+    ],
     "inputLabels": [
       "Gate open sensor",
       "Gate closed sensor",
       "Gate operation btn"
     ],
     "outputLabels": [
-      "Operate gate relay",
+      "Gate control relay",
       "Output 2",
-      "Output 3"
+      "LED"
     ],
     "edgeTerms": [
       "activated",
@@ -28,48 +41,40 @@
   },
   "machines": [
     {
-      "name": "Example 3: Gate operation via button and/or text message",
-      "deviceId": 1,
-      "initialState": "s_m516bu5",
+      "name": "Flash LED",
+      "targetSlot": 1,
+      "initialState": "s_npqxmcc",
       "states": [
         {
-          "id": "s_m516bu5",
-          "name": "Closed",
-          "x": 30,
-          "y": -498.5,
-          "entry": [],
-          "exit": []
-        },
-        {
-          "id": "s_xn6zgmv",
-          "name": "Opening",
-          "x": 9.5,
-          "y": -345.5,
-          "entry": [
-            {
-              "kind": 1,
-              "target": 1
-            }
-          ],
-          "exit": []
-        },
-        {
-          "id": "s_s9a85ne",
-          "name": "Open",
-          "x": 30,
-          "y": -199,
-          "entry": [],
-          "exit": []
-        },
-        {
-          "id": "s_8cxrp0s",
-          "name": "Closing",
-          "x": 9,
-          "y": -45.5,
+          "id": "s_npqxmcc",
+          "name": "LED Off",
+          "x": 83.5,
+          "y": 154.5,
           "entry": [
             {
               "kind": 2,
-              "target": 1
+              "target": 3
+            },
+            {
+              "kind": 4,
+              "target": 0
+            }
+          ],
+          "exit": []
+        },
+        {
+          "id": "s_4m2vf7q",
+          "name": "LED On",
+          "x": 83.5,
+          "y": 308,
+          "entry": [
+            {
+              "kind": 1,
+              "target": 3
+            },
+            {
+              "kind": 4,
+              "target": 0
             }
           ],
           "exit": []
@@ -77,228 +82,11 @@
       ],
       "transitions": [
         {
-          "id": "t_51et3yp",
-          "from": "s_m516bu5",
-          "to": "s_xn6zgmv",
-          "sourceHandle": "bottom",
-          "targetHandle": "top-left",
-          "eventType": 0,
-          "srcType": 2,
-          "srcIdent": 16777215,
-          "tgtType": 1,
-          "tgtIdent": 500,
-          "phraseMode": 0,
-          "phraseIgnoreCase": true,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "phraseId": 0,
-          "curveDelta": 56.46188622335394,
-          "labelT": 0.3947675639532242
-        },
-        {
-          "id": "t_xuqcqdx",
-          "from": "s_xn6zgmv",
-          "to": "s_s9a85ne",
-          "sourceHandle": "bottom",
-          "targetHandle": "top",
-          "eventType": 2,
-          "srcType": 2,
-          "srcIdent": 16777215,
-          "tgtType": 2,
-          "tgtIdent": 16777215,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "curveDelta": -0.843562882793016,
-          "labelT": 0.2507145681014012
-        },
-        {
-          "id": "t_znzmz38",
-          "from": "s_s9a85ne",
-          "to": "s_8cxrp0s",
+          "id": "t_bq6pc1l",
+          "from": "s_npqxmcc",
+          "to": "s_4m2vf7q",
           "sourceHandle": "bottom-left",
           "targetHandle": "top-left",
-          "eventType": 0,
-          "srcType": 2,
-          "srcIdent": 16777215,
-          "tgtType": 1,
-          "tgtIdent": 500,
-          "phraseMode": 0,
-          "phraseIgnoreCase": true,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "phraseId": 1,
-          "curveDelta": 72,
-          "labelT": 0.2533246733469541
-        },
-        {
-          "id": "t_fxarx56",
-          "from": "s_8cxrp0s",
-          "to": "s_m516bu5",
-          "sourceHandle": "left",
-          "targetHandle": "left",
-          "eventType": 2,
-          "srcType": 2,
-          "srcIdent": 16777215,
-          "tgtType": 2,
-          "tgtIdent": 16777215,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 2,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "curveDelta": -118.8793979833805,
-          "labelT": 0.11644411755740586
-        },
-        {
-          "id": "t_ocid1a7",
-          "from": "s_s9a85ne",
-          "to": "s_m516bu5",
-          "sourceHandle": "left",
-          "targetHandle": "left",
-          "eventType": 2,
-          "srcType": 2,
-          "srcIdent": 16777215,
-          "tgtType": 2,
-          "tgtIdent": 16777215,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 2,
-          "edge": 1,
-          "guards": [],
-          "actions": [],
-          "curveDelta": -24.224506858276413,
-          "labelT": 0.1476980957116819
-        },
-        {
-          "id": "t_jl13cjp",
-          "from": "s_m516bu5",
-          "to": "s_s9a85ne",
-          "sourceHandle": "right",
-          "targetHandle": "right",
-          "eventType": 2,
-          "srcType": 2,
-          "srcIdent": 16777215,
-          "tgtType": 2,
-          "tgtIdent": 16777215,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "curveDelta": -93.00235880481534,
-          "labelT": 0.20040892936029686
-        },
-        {
-          "id": "t_glxgtxq",
-          "from": "s_m516bu5",
-          "to": "s_xn6zgmv",
-          "sourceHandle": "corner-bottom-right",
-          "targetHandle": "top-right",
-          "eventType": 2,
-          "srcType": 2,
-          "srcIdent": 16777215,
-          "tgtType": 2,
-          "tgtIdent": 16777215,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 3,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "curveDelta": -47.03362409984835,
-          "labelT": 0.5759853124765822
-        },
-        {
-          "id": "t_hhjg4vu",
-          "from": "s_s9a85ne",
-          "to": "s_8cxrp0s",
-          "sourceHandle": "bottom-right",
-          "targetHandle": "top-right",
-          "eventType": 2,
-          "srcType": 2,
-          "srcIdent": 16777215,
-          "tgtType": 2,
-          "tgtIdent": 16777215,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 3,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "curveDelta": -84.36076059264852,
-          "labelT": 0.5321308020353145
-        }
-      ],
-      "timers": [],
-      "timerLabels": [],
-      "notes": "Gate operation with opening/closing states updated from inputs that are active when the gate is fully closed, and fully opened.",
-      "targetSlot": 0
-    },
-    {
-      "name": "Untitled Machine",
-      "targetSlot": 0,
-      "initialState": "s_w4he1fw",
-      "states": [
-        {
-          "id": "s_w4he1fw",
-          "name": "Idle",
-          "x": 70,
-          "y": 141,
-          "entry": [
-            {
-              "kind": 4,
-              "target": 0
-            }
-          ],
-          "exit": []
-        },
-        {
-          "id": "s_2aypak9",
-          "name": "Not idle",
-          "x": 70,
-          "y": 261,
-          "entry": [
-            {
-              "kind": 4,
-              "target": 0
-            }
-          ],
-          "exit": []
-        }
-      ],
-      "transitions": [
-        {
-          "id": "t_a2wprb4",
-          "from": "s_w4he1fw",
-          "to": "s_2aypak9",
-          "sourceHandle": "bottom",
-          "targetHandle": "top",
           "eventType": 1,
           "srcType": 2,
           "srcIdent": 16777215,
@@ -314,11 +102,11 @@
           "actions": []
         },
         {
-          "id": "t_3az0rcf",
-          "from": "s_2aypak9",
-          "to": "s_w4he1fw",
-          "sourceHandle": "right",
-          "targetHandle": "right",
+          "id": "t_r6fbnjq",
+          "from": "s_4m2vf7q",
+          "to": "s_npqxmcc",
+          "sourceHandle": "top-right",
+          "targetHandle": "bottom-right",
           "eventType": 1,
           "srcType": 2,
           "srcIdent": 16777215,
@@ -331,16 +119,15 @@
           "inputN": 1,
           "edge": 0,
           "guards": [],
-          "actions": [],
-          "curveDelta": 76.13793103448275,
-          "labelT": 0.4833333333333333
+          "actions": []
         }
       ],
+      "junctions": [],
       "timers": [
-        50
+        10
       ],
       "timerLabels": [
-        "Timer 1"
+        "LED Timer"
       ],
       "notes": ""
     }
