@@ -3,31 +3,20 @@
     "keywords": [
       "OPEN",
       "CLOSE",
-      "RSSI: {rssi}\nVOLTS: {volts}\nTempC: {tempc}"
+      "RSSI: {rssi}\nVOLTS: {volts}\nTempC: {tempc}",
+      "Test received from {lastcallerid}",
+      "Hello"
     ],
-    "userVars": [
-      {
-        "name": "Var 1"
-      },
-      {
-        "name": "Var 1"
-      },
-      {
-        "name": "Var 1"
-      },
-      {
-        "name": "Var 1"
-      }
-    ],
+    "userVars": [],
     "inputLabels": [
-      "Gate open sensor",
-      "Gate closed sensor",
-      "Gate operation btn"
+      "Input 1",
+      "Input 2",
+      "Input 3"
     ],
     "outputLabels": [
-      "Gate control relay",
+      "Output 1",
       "Output 2",
-      "LED"
+      "Output 3"
     ],
     "edgeTerms": [
       "activated",
@@ -37,44 +26,79 @@
     "stateTerms": [
       "Low",
       "High"
+    ],
+    "systemVariables": [
+      {
+        "id": 0,
+        "name": "Input voltage",
+        "token": "volts",
+        "unit": "V",
+        "scale": 0.1
+      },
+      {
+        "id": 1,
+        "name": "RSSI",
+        "token": "rssi",
+        "unit": "dBm",
+        "scale": 0.1
+      },
+      {
+        "id": 2,
+        "name": "Temperature C",
+        "token": "tempc",
+        "unit": "°C",
+        "scale": 0.1
+      }
+    ],
+    "enabledActionKinds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
     ]
   },
   "machines": [
     {
-      "name": "Flash LED",
-      "targetSlot": 1,
-      "initialState": "s_npqxmcc",
+      "name": "Pulse output",
+      "targetSlot": 0,
+      "initialState": "s_tpio5gq",
       "states": [
         {
-          "id": "s_npqxmcc",
-          "name": "LED Off",
-          "x": 83.5,
-          "y": 154.5,
+          "id": "s_tpio5gq",
+          "name": "Idle",
+          "x": 89.5,
+          "y": 94.5,
           "entry": [
-            {
-              "kind": 2,
-              "target": 3
-            },
             {
               "kind": 4,
               "target": 0
+            },
+            {
+              "kind": 2,
+              "target": 1
             }
           ],
           "exit": []
         },
         {
-          "id": "s_4m2vf7q",
-          "name": "LED On",
-          "x": 83.5,
-          "y": 308,
+          "id": "s_fpc65av",
+          "name": "Active",
+          "x": 90,
+          "y": 261,
           "entry": [
-            {
-              "kind": 1,
-              "target": 3
-            },
             {
               "kind": 4,
               "target": 0
+            },
+            {
+              "kind": 1,
+              "target": 1
             }
           ],
           "exit": []
@@ -82,16 +106,14 @@
       ],
       "transitions": [
         {
-          "id": "t_bq6pc1l",
-          "from": "s_npqxmcc",
-          "to": "s_4m2vf7q",
+          "id": "t_8hei423",
+          "from": "s_tpio5gq",
+          "to": "s_fpc65av",
           "sourceHandle": "bottom-left",
           "targetHandle": "top-left",
           "eventType": 1,
-          "srcType": 2,
-          "srcIdent": 16777215,
-          "tgtType": 2,
-          "tgtIdent": 16777215,
+          "srcIdent": "",
+          "tgtIdent": "",
           "phraseMode": 0,
           "phraseIgnoreCase": false,
           "minInterval": 0,
@@ -102,16 +124,101 @@
           "actions": []
         },
         {
-          "id": "t_r6fbnjq",
-          "from": "s_4m2vf7q",
-          "to": "s_npqxmcc",
+          "id": "t_x617ovl",
+          "from": "s_fpc65av",
+          "to": "s_tpio5gq",
           "sourceHandle": "top-right",
           "targetHandle": "bottom-right",
           "eventType": 1,
-          "srcType": 2,
-          "srcIdent": 16777215,
-          "tgtType": 2,
-          "tgtIdent": 16777215,
+          "srcIdent": "",
+          "tgtIdent": "",
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": []
+        }
+      ],
+      "junctions": [],
+      "timers": [
+        50
+      ],
+      "timerLabels": [
+        "Timer 1"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Pulse output",
+      "targetSlot": 2,
+      "initialState": "s_tpio5gq",
+      "states": [
+        {
+          "id": "s_tpio5gq",
+          "name": "Idle",
+          "x": 89.5,
+          "y": 94.5,
+          "entry": [
+            {
+              "kind": 4,
+              "target": 0
+            },
+            {
+              "kind": 2,
+              "target": 1
+            }
+          ],
+          "exit": []
+        },
+        {
+          "id": "s_fpc65av",
+          "name": "Active",
+          "x": 90,
+          "y": 261,
+          "entry": [
+            {
+              "kind": 4,
+              "target": 0
+            },
+            {
+              "kind": 1,
+              "target": 1
+            }
+          ],
+          "exit": []
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_8hei423",
+          "from": "s_tpio5gq",
+          "to": "s_fpc65av",
+          "sourceHandle": "bottom-left",
+          "targetHandle": "top-left",
+          "eventType": 1,
+          "srcIdent": "",
+          "tgtIdent": "",
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "t_x617ovl",
+          "from": "s_fpc65av",
+          "to": "s_tpio5gq",
+          "sourceHandle": "top-right",
+          "targetHandle": "bottom-right",
+          "eventType": 1,
+          "srcIdent": "",
+          "tgtIdent": "",
           "phraseMode": 0,
           "phraseIgnoreCase": false,
           "minInterval": 0,
@@ -127,8 +234,81 @@
         10
       ],
       "timerLabels": [
-        "LED Timer"
+        "Timer 1"
       ],
+      "notes": ""
+    },
+    {
+      "name": "Text back text",
+      "targetSlot": 200,
+      "initialState": "s_sn5tuw2",
+      "states": [
+        {
+          "id": "s_sn5tuw2",
+          "name": "Idle",
+          "x": 70,
+          "y": 61,
+          "entry": [],
+          "exit": []
+        },
+        {
+          "id": "s_u6mgysu",
+          "name": "Send reply",
+          "x": -23,
+          "y": 174.5,
+          "entry": [
+            {
+              "kind": 7,
+              "target": 1,
+              "msgPhraseId": 3,
+              "msgReplyToLastCaller": true
+            }
+          ],
+          "exit": []
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_t5kee8u",
+          "from": "s_sn5tuw2",
+          "to": "s_u6mgysu",
+          "sourceHandle": "left",
+          "targetHandle": "top-left",
+          "eventType": 0,
+          "srcIdent": "",
+          "tgtIdent": "",
+          "phraseMode": 1,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "phraseId": 4
+        },
+        {
+          "id": "t_764tor8",
+          "from": "s_u6mgysu",
+          "to": "s_sn5tuw2",
+          "sourceHandle": "top-right",
+          "targetHandle": "right",
+          "eventType": 3,
+          "srcIdent": "",
+          "tgtIdent": "",
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": []
+        }
+      ],
+      "junctions": [],
+      "timers": [],
+      "timerLabels": [],
       "notes": ""
     }
   ]
