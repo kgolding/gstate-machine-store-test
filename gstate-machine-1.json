@@ -1,22 +1,24 @@
 {
   "shared": {
-    "keywords": [
-      "OPEN",
-      "CLOSE",
-      "RSSI: {rssi}\nVOLTS: {volts}\nTempC: {tempc}",
-      "Test received from {lastcallerid}",
-      "Hello"
+    "userVars": [
+      {
+        "name": "Pulse output"
+      },
+      {
+        "name": "Monitor input ID"
+      }
     ],
-    "userVars": [],
     "inputLabels": [
       "Input 1",
       "Input 2",
-      "Input 3"
+      "Input 3",
+      "Input 4"
     ],
     "outputLabels": [
-      "Output 1",
-      "Output 2",
-      "Output 3"
+      "Relay 1",
+      "Relay 2",
+      "Relay 3",
+      "Relay 4"
     ],
     "edgeTerms": [
       "activated",
@@ -60,7 +62,9 @@
       7,
       8,
       9,
-      10
+      10,
+      11,
+      12
     ]
   },
   "machines": [
@@ -149,98 +153,14 @@
       "timerLabels": [
         "Timer 1"
       ],
-      "notes": ""
-    },
-    {
-      "name": "Pulse output",
-      "targetSlot": 2,
-      "initialState": "s_tpio5gq",
-      "states": [
-        {
-          "id": "s_tpio5gq",
-          "name": "Idle",
-          "x": 89.5,
-          "y": 94.5,
-          "entry": [
-            {
-              "kind": 4,
-              "target": 0
-            },
-            {
-              "kind": 2,
-              "target": 1
-            }
-          ],
-          "exit": []
-        },
-        {
-          "id": "s_fpc65av",
-          "name": "Active",
-          "x": 90,
-          "y": 261,
-          "entry": [
-            {
-              "kind": 4,
-              "target": 0
-            },
-            {
-              "kind": 1,
-              "target": 1
-            }
-          ],
-          "exit": []
-        }
-      ],
-      "transitions": [
-        {
-          "id": "t_8hei423",
-          "from": "s_tpio5gq",
-          "to": "s_fpc65av",
-          "sourceHandle": "bottom-left",
-          "targetHandle": "top-left",
-          "eventType": 1,
-          "srcIdent": "",
-          "tgtIdent": "",
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": []
-        },
-        {
-          "id": "t_x617ovl",
-          "from": "s_fpc65av",
-          "to": "s_tpio5gq",
-          "sourceHandle": "top-right",
-          "targetHandle": "bottom-right",
-          "eventType": 1,
-          "srcIdent": "",
-          "tgtIdent": "",
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": []
-        }
-      ],
-      "junctions": [],
-      "timers": [
-        10
-      ],
-      "timerLabels": [
-        "Timer 1"
-      ],
-      "notes": ""
+      "notes": "",
+      "timerRandom": [
+        false
+      ]
     },
     {
       "name": "Text back text",
-      "targetSlot": 200,
+      "targetSlot": 180,
       "initialState": "s_sn5tuw2",
       "states": [
         {
@@ -250,18 +170,81 @@
           "y": 61,
           "entry": [],
           "exit": []
-        },
+        }
+      ],
+      "transitions": [
         {
-          "id": "s_u6mgysu",
-          "name": "Send reply",
-          "x": -23,
-          "y": 174.5,
-          "entry": [
+          "id": "t_t5kee8u",
+          "from": "s_sn5tuw2",
+          "to": "s_sn5tuw2",
+          "sourceHandle": "bottom-left",
+          "targetHandle": "bottom-right",
+          "eventType": 0,
+          "srcIdent": "",
+          "tgtIdent": "",
+          "phraseMode": 4,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [
             {
               "kind": 7,
               "target": 1,
-              "msgPhraseId": 3,
+              "msgPhrase": "Test OK {$1}",
               "msgReplyToLastCaller": true
+            }
+          ],
+          "phrase": "^Test(?:\\s+(.+)|)",
+          "curveDelta": 52.0979976517838,
+          "labelT": 0.40704437296957086
+        }
+      ],
+      "junctions": [],
+      "timers": [],
+      "timerLabels": [],
+      "notes": "",
+      "timerRandom": []
+    },
+    {
+      "name": "Welcome to pulse relay 2",
+      "targetSlot": 1,
+      "initialState": "s_zzsokxw",
+      "states": [
+        {
+          "id": "s_zzsokxw",
+          "name": "Idle",
+          "x": 110,
+          "y": 81,
+          "entry": [
+            {
+              "kind": 2,
+              "target": 2
+            }
+          ],
+          "exit": []
+        },
+        {
+          "id": "s_b87oci1",
+          "name": "State2",
+          "x": 69,
+          "y": 201,
+          "entry": [
+            {
+              "kind": 1,
+              "target": 2
+            },
+            {
+              "kind": 7,
+              "target": 1,
+              "msgReplyToLastCaller": true,
+              "msgPhrase": "?"
+            },
+            {
+              "kind": 4,
+              "target": 1
             }
           ],
           "exit": []
@@ -269,11 +252,11 @@
       ],
       "transitions": [
         {
-          "id": "t_t5kee8u",
-          "from": "s_sn5tuw2",
-          "to": "s_u6mgysu",
+          "id": "t_6c6jpah",
+          "from": "s_zzsokxw",
+          "to": "s_b87oci1",
           "sourceHandle": "left",
-          "targetHandle": "top-left",
+          "targetHandle": "left",
           "eventType": 0,
           "srcIdent": "",
           "tgtIdent": "",
@@ -285,17 +268,785 @@
           "edge": 0,
           "guards": [],
           "actions": [],
-          "phraseId": 4
+          "phrase": "?"
         },
         {
-          "id": "t_764tor8",
-          "from": "s_u6mgysu",
-          "to": "s_sn5tuw2",
-          "sourceHandle": "top-right",
+          "id": "t_cb6e122",
+          "from": "s_b87oci1",
+          "to": "s_zzsokxw",
+          "sourceHandle": "right",
           "targetHandle": "right",
-          "eventType": 3,
+          "eventType": 1,
           "srcIdent": "",
           "tgtIdent": "",
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 1,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": []
+        }
+      ],
+      "junctions": [],
+      "timers": [
+        50,
+        20
+      ],
+      "timerLabels": [
+        "Timer 1",
+        "Timer 2"
+      ],
+      "notes": "",
+      "timerRandom": [
+        false,
+        false
+      ]
+    },
+    {
+      "name": "3 Inputs to any one of 3 relays",
+      "targetSlot": 2,
+      "initialState": "s_dgda06d",
+      "states": [
+        {
+          "id": "s_dgda06d",
+          "name": "Wait input",
+          "x": -70,
+          "y": -65.5,
+          "entry": [
+            {
+              "kind": 5,
+              "target": 0
+            }
+          ],
+          "exit": []
+        },
+        {
+          "id": "s_h6q6v32",
+          "name": "Relay 1",
+          "x": -70,
+          "y": 101.5,
+          "entry": [
+            {
+              "kind": 2,
+              "target": 2
+            },
+            {
+              "kind": 2,
+              "target": 3
+            },
+            {
+              "kind": 1,
+              "target": 1
+            },
+            {
+              "kind": 4,
+              "target": 0
+            }
+          ],
+          "exit": []
+        },
+        {
+          "id": "s_0vizndm",
+          "name": "Relay 2",
+          "x": 70,
+          "y": 101.5,
+          "entry": [
+            {
+              "kind": 2,
+              "target": 1
+            },
+            {
+              "kind": 2,
+              "target": 3
+            },
+            {
+              "kind": 1,
+              "target": 2
+            },
+            {
+              "kind": 4,
+              "target": 0
+            }
+          ],
+          "exit": []
+        },
+        {
+          "id": "s_1deuogk",
+          "name": "Relay 3",
+          "x": 210,
+          "y": 101.5,
+          "entry": [
+            {
+              "kind": 2,
+              "target": 1
+            },
+            {
+              "kind": 2,
+              "target": 2
+            },
+            {
+              "kind": 1,
+              "target": 3
+            },
+            {
+              "kind": 4,
+              "target": 0
+            }
+          ],
+          "exit": []
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_qtj43gc",
+          "from": "s_dgda06d",
+          "to": "s_h6q6v32",
+          "sourceHandle": "bottom",
+          "targetHandle": "top",
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [
+            {
+              "type": 3,
+              "param": 16
+            }
+          ],
+          "actions": [],
+          "curveDelta": 0.0326056310927168,
+          "labelT": 0.38481314519818616
+        },
+        {
+          "id": "t_d4ubizi",
+          "from": "s_dgda06d",
+          "to": "s_0vizndm",
+          "sourceHandle": "corner-bottom-right",
+          "targetHandle": "top",
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 2,
+          "edge": 0,
+          "guards": [
+            {
+              "type": 3,
+              "param": 32
+            }
+          ],
+          "actions": [],
+          "curveDelta": -44.05467529419722,
+          "labelT": 0.5197621126114841
+        },
+        {
+          "id": "t_5nvpzxq",
+          "from": "s_dgda06d",
+          "to": "s_1deuogk",
+          "sourceHandle": "right",
+          "targetHandle": "top",
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 3,
+          "edge": 0,
+          "guards": [
+            {
+              "type": 3,
+              "param": 48
+            }
+          ],
+          "actions": [],
+          "curveDelta": -65.70747038486161,
+          "labelT": 0.6977174367626683
+        },
+        {
+          "id": "t_ldvcdm1",
+          "from": "s_h6q6v32",
+          "to": "s_dgda06d",
+          "sourceHandle": "bottom",
+          "targetHandle": null,
+          "eventType": 1,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "viaJunctionId": "j_zkwlcsw",
+          "curveDelta": -0.08015732431448186,
+          "labelT": 0.2326469508689945
+        },
+        {
+          "id": "t_7mek4gm",
+          "from": "s_0vizndm",
+          "to": "s_dgda06d",
+          "sourceHandle": "bottom",
+          "targetHandle": null,
+          "eventType": 1,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "viaJunctionId": "j_zkwlcsw",
+          "curveDelta": -14.090439490069162,
+          "labelT": 0.20216428460796843
+        },
+        {
+          "id": "t_t74mibg",
+          "from": "s_1deuogk",
+          "to": "s_dgda06d",
+          "sourceHandle": "bottom",
+          "targetHandle": null,
+          "eventType": 1,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "viaJunctionId": "j_zkwlcsw",
+          "curveDelta": -33.363117413808325,
+          "labelT": 0.15355919861432088
+        }
+      ],
+      "junctions": [
+        {
+          "id": "j_zkwlcsw",
+          "x": -33,
+          "y": 267,
+          "to": "s_dgda06d",
+          "targetHandle": "corner-bottom-left",
+          "curveDelta": -126.11997917043306,
+          "labelT": 0.4466544582872648
+        }
+      ],
+      "timers": [
+        15
+      ],
+      "timerLabels": [
+        "Slug"
+      ],
+      "notes": "**Press input X to activate a relay X, limited to only one relay being active at a time.**\nRelays cannot be switched faster than every 1.5 seconds and inputs are ignored during the 1.5 second window.\nRelays are switched off before another being switched on, being a \"break-before-make\" apporach.",
+      "timerRandom": [
+        false
+      ]
+    },
+    {
+      "name": "Set date/time from text message",
+      "targetSlot": 181,
+      "initialState": "s_lz61tnz",
+      "states": [
+        {
+          "id": "s_lz61tnz",
+          "name": "Idle",
+          "x": 80,
+          "y": 160,
+          "entry": [],
+          "exit": []
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_qomj5cz",
+          "from": "s_lz61tnz",
+          "to": "s_lz61tnz",
+          "sourceHandle": "bottom-left",
+          "targetHandle": "bottom-right",
+          "eventType": 0,
+          "phraseMode": 4,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 12,
+              "target": 0,
+              "varValue": 0,
+              "capture": 1,
+              "msgIdent": "",
+              "msgPhrase": "{$1}"
+            }
+          ],
+          "curveDelta": 102.41071765235804,
+          "labelT": 0.6720350793275432,
+          "phrase": "Set ((?:\\d{4}-?\\d\\d-?\\d\\d )?\\d\\d:?\\d\\d:?\\d\\d)"
+        }
+      ],
+      "junctions": [],
+      "timers": [
+        50
+      ],
+      "timerLabels": [
+        "Timer 1"
+      ],
+      "notes": "",
+      "timerRandom": [
+        true
+      ]
+    },
+    {
+      "name": "Pulse output by text message",
+      "targetSlot": 182,
+      "initialState": "s_h6evoqn",
+      "states": [
+        {
+          "id": "s_h6evoqn",
+          "name": "Idle",
+          "x": 70,
+          "y": 161,
+          "entry": [],
+          "exit": []
+        },
+        {
+          "id": "s_vh2y23q",
+          "name": "Pulse output",
+          "x": 47,
+          "y": 354.5,
+          "entry": [
+            {
+              "kind": 1,
+              "target": 0,
+              "targetVar": 128,
+              "capture": 1
+            }
+          ],
+          "exit": [
+            {
+              "kind": 2,
+              "target": 1,
+              "targetVar": 128
+            }
+          ]
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_40c502k",
+          "from": "s_h6evoqn",
+          "to": "s_vh2y23q",
+          "sourceHandle": "bottom",
+          "targetHandle": "top",
+          "eventType": 0,
+          "phraseMode": 4,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 11,
+              "target": 0,
+              "capture": 1
+            },
+            {
+              "kind": 4,
+              "target": 0
+            },
+            {
+              "kind": 7,
+              "target": 1,
+              "msgPhrase": "Pulsing {pulseoutput}",
+              "msgReplyToLastCaller": true
+            }
+          ],
+          "phrase": "Pulse ([1234])",
+          "curveDelta": 40.97673062952251,
+          "labelT": 0.4585271051081292
+        },
+        {
+          "id": "t_9e8e6hy",
+          "from": "s_vh2y23q",
+          "to": "s_h6evoqn",
+          "sourceHandle": "right",
+          "targetHandle": "right",
+          "eventType": 1,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "curveDelta": 70.61799549984761,
+          "labelT": 0.5240329432660777
+        }
+      ],
+      "junctions": [],
+      "timers": [
+        30
+      ],
+      "timerLabels": [
+        "Timer 1"
+      ],
+      "timerRandom": [
+        false
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Monitor inputs by text message",
+      "targetSlot": 183,
+      "initialState": "s_xgedicz",
+      "states": [
+        {
+          "id": "s_xgedicz",
+          "name": "Idle",
+          "x": 70,
+          "y": 61,
+          "entry": [],
+          "exit": []
+        },
+        {
+          "id": "s_vtidmrp",
+          "name": "Monitoring inputs",
+          "x": 66,
+          "y": 194.5,
+          "entry": [],
+          "exit": []
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_n4s6bl3",
+          "from": "s_xgedicz",
+          "to": "s_vtidmrp",
+          "sourceHandle": "corner-bottom-left",
+          "targetHandle": "corner-top-left",
+          "eventType": 0,
+          "phraseMode": 0,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 13,
+              "target": 1,
+              "valueVar": 3
+            },
+            {
+              "kind": 7,
+              "target": 1,
+              "msgPhrase": "Input monitoring active. Reply Stop to end.",
+              "msgReplyToLastCaller": true
+            }
+          ],
+          "phrase": "Monitor",
+          "curveDelta": 44.29139394549368,
+          "labelT": 0.3975883684293482
+        },
+        {
+          "id": "t_nvitv1n",
+          "from": "s_vtidmrp",
+          "to": "s_vtidmrp",
+          "sourceHandle": "corner-bottom-left",
+          "targetHandle": null,
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 7,
+              "target": 1,
+              "msgIdent": "{monitorinputid}",
+              "msgPhrase": "Input 1 active"
+            }
+          ],
+          "curveDelta": 571.1479313201919,
+          "labelT": 0.08263416781064556,
+          "viaJunctionId": "j_eb3nmsg"
+        },
+        {
+          "id": "t_pfm0ypl",
+          "from": "s_vtidmrp",
+          "to": "s_vtidmrp",
+          "sourceHandle": "corner-bottom-right",
+          "targetHandle": null,
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 3,
+          "edge": 0,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 7,
+              "target": 1,
+              "msgIdent": "{monitorinputid}",
+              "msgPhrase": "Input 3 active"
+            }
+          ],
+          "curveDelta": -249.36205359770702,
+          "labelT": 0.11307060177415745,
+          "viaJunctionId": "j_eb3nmsg"
+        },
+        {
+          "id": "t_1afbvtj",
+          "from": "s_vtidmrp",
+          "to": "s_vtidmrp",
+          "sourceHandle": "corner-bottom-left",
+          "targetHandle": null,
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 2,
+          "edge": 0,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 7,
+              "target": 1,
+              "msgIdent": "{monitorinputid}",
+              "msgPhrase": "Input 2 active"
+            }
+          ],
+          "curveDelta": 262.577192152978,
+          "labelT": 0.4564476546328339,
+          "viaJunctionId": "j_eb3nmsg"
+        },
+        {
+          "id": "t_3bmka1z",
+          "from": "s_vtidmrp",
+          "to": "s_vtidmrp",
+          "sourceHandle": "corner-bottom-right",
+          "targetHandle": null,
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 4,
+          "edge": 0,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 7,
+              "target": 1,
+              "msgIdent": "{monitorinputid}",
+              "msgPhrase": "Input 4 active"
+            }
+          ],
+          "curveDelta": -238.758548550059,
+          "labelT": 0.48396763655002306,
+          "viaJunctionId": "j_eb3nmsg"
+        },
+        {
+          "id": "t_s65io97",
+          "from": "s_vtidmrp",
+          "to": "s_vtidmrp",
+          "sourceHandle": "corner-bottom-left",
+          "targetHandle": null,
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 2,
+          "edge": 1,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 7,
+              "target": 1,
+              "msgIdent": "{monitorinputid}",
+              "msgPhrase": "Input 2 cleared"
+            }
+          ],
+          "curveDelta": 166.19929942828608,
+          "labelT": 0.6134037718341196,
+          "viaJunctionId": "j_eb3nmsg"
+        },
+        {
+          "id": "t_089bfk4",
+          "from": "s_vtidmrp",
+          "to": "s_vtidmrp",
+          "sourceHandle": "corner-bottom-right",
+          "targetHandle": null,
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 4,
+          "edge": 1,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 7,
+              "target": 1,
+              "msgIdent": "{monitorinputid}",
+              "msgPhrase": "Input 4 cleared"
+            }
+          ],
+          "curveDelta": -335.3320230033347,
+          "labelT": 0.6455630752004309,
+          "viaJunctionId": "j_eb3nmsg"
+        },
+        {
+          "id": "t_e1weiej",
+          "from": "s_vtidmrp",
+          "to": "s_vtidmrp",
+          "sourceHandle": "corner-bottom-left",
+          "targetHandle": null,
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 1,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 7,
+              "target": 1,
+              "msgIdent": "{monitorinputid}",
+              "msgPhrase": "Input 1 cleared"
+            }
+          ],
+          "curveDelta": 284.02538601473015,
+          "labelT": 0.17292020127515906,
+          "viaJunctionId": "j_eb3nmsg"
+        },
+        {
+          "id": "t_7noseqk",
+          "from": "s_vtidmrp",
+          "to": "s_vtidmrp",
+          "sourceHandle": "corner-bottom-right",
+          "targetHandle": null,
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": false,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 3,
+          "edge": 1,
+          "guards": [],
+          "actions": [
+            {
+              "kind": 7,
+              "target": 1,
+              "msgIdent": "{monitorinputid}",
+              "msgPhrase": "Input 3 cleared"
+            }
+          ],
+          "curveDelta": -544.159454405007,
+          "labelT": 0.24158527609770242,
+          "viaJunctionId": "j_eb3nmsg"
+        },
+        {
+          "id": "t_j6l9t8g",
+          "from": "s_vtidmrp",
+          "to": "s_xgedicz",
+          "sourceHandle": "corner-top-right",
+          "targetHandle": "right",
+          "eventType": 0,
+          "phraseMode": 0,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "phrase": "Stop",
+          "curveDelta": 130.21278775370223,
+          "labelT": 0.48173154361411075
+        }
+      ],
+      "junctions": [
+        {
+          "id": "j_eb3nmsg",
+          "x": 127,
+          "y": 507,
+          "to": "s_vtidmrp",
+          "targetHandle": "right",
+          "curveDelta": 518.1546001768096,
+          "labelT": 0.8202229561996167
+        }
+      ],
+      "timers": [
+        50
+      ],
+      "timerLabels": [
+        "Timer 1"
+      ],
+      "timerRandom": [
+        false
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Started message when radio is first connected",
+      "targetSlot": 184,
+      "initialState": "s_ni93rs7",
+      "states": [
+        {
+          "id": "s_ni93rs7",
+          "name": "Starting up",
+          "x": 50,
+          "y": -79,
+          "entry": [],
+          "exit": []
+        },
+        {
+          "id": "s_heqs5wk",
+          "name": "System started",
+          "x": 15.5,
+          "y": 41,
+          "entry": [
+            {
+              "kind": 7,
+              "target": 1,
+              "msgIdent": "G1",
+              "msgPhrase": "System started"
+            }
+          ],
+          "exit": []
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_o3ctqy7",
+          "from": "s_ni93rs7",
+          "to": "s_heqs5wk",
+          "sourceHandle": "bottom",
+          "targetHandle": "top",
+          "eventType": 5,
           "phraseMode": 0,
           "phraseIgnoreCase": false,
           "minInterval": 0,
@@ -309,6 +1060,7 @@
       "junctions": [],
       "timers": [],
       "timerLabels": [],
+      "timerRandom": [],
       "notes": ""
     }
   ]
