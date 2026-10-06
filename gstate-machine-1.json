@@ -1,13 +1,5 @@
 {
   "shared": {
-    "userVars": [
-      {
-        "name": "Pulse output"
-      },
-      {
-        "name": "Monitor input ID"
-      }
-    ],
     "inputLabels": [
       "Input 1",
       "Input 2",
@@ -69,40 +61,29 @@
   },
   "machines": [
     {
-      "name": "Pulse output",
-      "targetSlot": 0,
-      "initialState": "s_tpio5gq",
+      "name": "Started message when radio is first connected",
+      "targetSlot": 180,
+      "initialState": "s_ni93rs7",
       "states": [
         {
-          "id": "s_tpio5gq",
-          "name": "Idle",
-          "x": 89.5,
-          "y": 94.5,
-          "entry": [
-            {
-              "kind": 4,
-              "target": 0
-            },
-            {
-              "kind": 2,
-              "target": 1
-            }
-          ],
+          "id": "s_ni93rs7",
+          "name": "Starting up",
+          "x": 50,
+          "y": -79,
+          "entry": [],
           "exit": []
         },
         {
-          "id": "s_fpc65av",
-          "name": "Active",
-          "x": 90,
-          "y": 261,
+          "id": "s_heqs5wk",
+          "name": "System started",
+          "x": 15.5,
+          "y": 41,
           "entry": [
             {
-              "kind": 4,
-              "target": 0
-            },
-            {
-              "kind": 1,
-              "target": 1
+              "kind": 7,
+              "target": 1,
+              "msgIdent": "G1",
+              "msgPhrase": "System started"
             }
           ],
           "exit": []
@@ -110,32 +91,12 @@
       ],
       "transitions": [
         {
-          "id": "t_8hei423",
-          "from": "s_tpio5gq",
-          "to": "s_fpc65av",
-          "sourceHandle": "bottom-left",
-          "targetHandle": "top-left",
-          "eventType": 1,
-          "srcIdent": "",
-          "tgtIdent": "",
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": []
-        },
-        {
-          "id": "t_x617ovl",
-          "from": "s_fpc65av",
-          "to": "s_tpio5gq",
-          "sourceHandle": "top-right",
-          "targetHandle": "bottom-right",
-          "eventType": 1,
-          "srcIdent": "",
-          "tgtIdent": "",
+          "id": "t_o3ctqy7",
+          "from": "s_ni93rs7",
+          "to": "s_heqs5wk",
+          "sourceHandle": "bottom",
+          "targetHandle": "top",
+          "eventType": 5,
           "phraseMode": 0,
           "phraseIgnoreCase": false,
           "minInterval": 0,
@@ -147,20 +108,15 @@
         }
       ],
       "junctions": [],
-      "timers": [
-        50
-      ],
-      "timerLabels": [
-        "Timer 1"
-      ],
+      "timers": [],
+      "timerLabels": [],
+      "timerRandom": [],
       "notes": "",
-      "timerRandom": [
-        false
-      ]
+      "userVars": []
     },
     {
       "name": "Text back text",
-      "targetSlot": 180,
+      "targetSlot": 181,
       "initialState": "s_sn5tuw2",
       "states": [
         {
@@ -206,403 +162,8 @@
       "timers": [],
       "timerLabels": [],
       "notes": "",
-      "timerRandom": []
-    },
-    {
-      "name": "Welcome to pulse relay 2",
-      "targetSlot": 1,
-      "initialState": "s_zzsokxw",
-      "states": [
-        {
-          "id": "s_zzsokxw",
-          "name": "Idle",
-          "x": 110,
-          "y": 81,
-          "entry": [
-            {
-              "kind": 2,
-              "target": 2
-            }
-          ],
-          "exit": []
-        },
-        {
-          "id": "s_b87oci1",
-          "name": "State2",
-          "x": 69,
-          "y": 201,
-          "entry": [
-            {
-              "kind": 1,
-              "target": 2
-            },
-            {
-              "kind": 7,
-              "target": 1,
-              "msgReplyToLastCaller": true,
-              "msgPhrase": "?"
-            },
-            {
-              "kind": 4,
-              "target": 1
-            }
-          ],
-          "exit": []
-        }
-      ],
-      "transitions": [
-        {
-          "id": "t_6c6jpah",
-          "from": "s_zzsokxw",
-          "to": "s_b87oci1",
-          "sourceHandle": "left",
-          "targetHandle": "left",
-          "eventType": 0,
-          "srcIdent": "",
-          "tgtIdent": "",
-          "phraseMode": 1,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "phrase": "?"
-        },
-        {
-          "id": "t_cb6e122",
-          "from": "s_b87oci1",
-          "to": "s_zzsokxw",
-          "sourceHandle": "right",
-          "targetHandle": "right",
-          "eventType": 1,
-          "srcIdent": "",
-          "tgtIdent": "",
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 1,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": []
-        }
-      ],
-      "junctions": [],
-      "timers": [
-        50,
-        20
-      ],
-      "timerLabels": [
-        "Timer 1",
-        "Timer 2"
-      ],
-      "notes": "",
-      "timerRandom": [
-        false,
-        false
-      ]
-    },
-    {
-      "name": "3 Inputs to any one of 3 relays",
-      "targetSlot": 2,
-      "initialState": "s_dgda06d",
-      "states": [
-        {
-          "id": "s_dgda06d",
-          "name": "Wait input",
-          "x": -70,
-          "y": -65.5,
-          "entry": [
-            {
-              "kind": 5,
-              "target": 0
-            }
-          ],
-          "exit": []
-        },
-        {
-          "id": "s_h6q6v32",
-          "name": "Relay 1",
-          "x": -70,
-          "y": 101.5,
-          "entry": [
-            {
-              "kind": 2,
-              "target": 2
-            },
-            {
-              "kind": 2,
-              "target": 3
-            },
-            {
-              "kind": 1,
-              "target": 1
-            },
-            {
-              "kind": 4,
-              "target": 0
-            }
-          ],
-          "exit": []
-        },
-        {
-          "id": "s_0vizndm",
-          "name": "Relay 2",
-          "x": 70,
-          "y": 101.5,
-          "entry": [
-            {
-              "kind": 2,
-              "target": 1
-            },
-            {
-              "kind": 2,
-              "target": 3
-            },
-            {
-              "kind": 1,
-              "target": 2
-            },
-            {
-              "kind": 4,
-              "target": 0
-            }
-          ],
-          "exit": []
-        },
-        {
-          "id": "s_1deuogk",
-          "name": "Relay 3",
-          "x": 210,
-          "y": 101.5,
-          "entry": [
-            {
-              "kind": 2,
-              "target": 1
-            },
-            {
-              "kind": 2,
-              "target": 2
-            },
-            {
-              "kind": 1,
-              "target": 3
-            },
-            {
-              "kind": 4,
-              "target": 0
-            }
-          ],
-          "exit": []
-        }
-      ],
-      "transitions": [
-        {
-          "id": "t_qtj43gc",
-          "from": "s_dgda06d",
-          "to": "s_h6q6v32",
-          "sourceHandle": "bottom",
-          "targetHandle": "top",
-          "eventType": 2,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [
-            {
-              "type": 3,
-              "param": 16
-            }
-          ],
-          "actions": [],
-          "curveDelta": 0.0326056310927168,
-          "labelT": 0.38481314519818616
-        },
-        {
-          "id": "t_d4ubizi",
-          "from": "s_dgda06d",
-          "to": "s_0vizndm",
-          "sourceHandle": "corner-bottom-right",
-          "targetHandle": "top",
-          "eventType": 2,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 2,
-          "edge": 0,
-          "guards": [
-            {
-              "type": 3,
-              "param": 32
-            }
-          ],
-          "actions": [],
-          "curveDelta": -44.05467529419722,
-          "labelT": 0.5197621126114841
-        },
-        {
-          "id": "t_5nvpzxq",
-          "from": "s_dgda06d",
-          "to": "s_1deuogk",
-          "sourceHandle": "right",
-          "targetHandle": "top",
-          "eventType": 2,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 3,
-          "edge": 0,
-          "guards": [
-            {
-              "type": 3,
-              "param": 48
-            }
-          ],
-          "actions": [],
-          "curveDelta": -65.70747038486161,
-          "labelT": 0.6977174367626683
-        },
-        {
-          "id": "t_ldvcdm1",
-          "from": "s_h6q6v32",
-          "to": "s_dgda06d",
-          "sourceHandle": "bottom",
-          "targetHandle": null,
-          "eventType": 1,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "viaJunctionId": "j_zkwlcsw",
-          "curveDelta": -0.08015732431448186,
-          "labelT": 0.2326469508689945
-        },
-        {
-          "id": "t_7mek4gm",
-          "from": "s_0vizndm",
-          "to": "s_dgda06d",
-          "sourceHandle": "bottom",
-          "targetHandle": null,
-          "eventType": 1,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "viaJunctionId": "j_zkwlcsw",
-          "curveDelta": -14.090439490069162,
-          "labelT": 0.20216428460796843
-        },
-        {
-          "id": "t_t74mibg",
-          "from": "s_1deuogk",
-          "to": "s_dgda06d",
-          "sourceHandle": "bottom",
-          "targetHandle": null,
-          "eventType": 1,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": [],
-          "viaJunctionId": "j_zkwlcsw",
-          "curveDelta": -33.363117413808325,
-          "labelT": 0.15355919861432088
-        }
-      ],
-      "junctions": [
-        {
-          "id": "j_zkwlcsw",
-          "x": -33,
-          "y": 267,
-          "to": "s_dgda06d",
-          "targetHandle": "corner-bottom-left",
-          "curveDelta": -126.11997917043306,
-          "labelT": 0.4466544582872648
-        }
-      ],
-      "timers": [
-        15
-      ],
-      "timerLabels": [
-        "Slug"
-      ],
-      "notes": "**Press input X to activate a relay X, limited to only one relay being active at a time.**\nRelays cannot be switched faster than every 1.5 seconds and inputs are ignored during the 1.5 second window.\nRelays are switched off before another being switched on, being a \"break-before-make\" apporach.",
-      "timerRandom": [
-        false
-      ]
-    },
-    {
-      "name": "Set date/time from text message",
-      "targetSlot": 181,
-      "initialState": "s_lz61tnz",
-      "states": [
-        {
-          "id": "s_lz61tnz",
-          "name": "Idle",
-          "x": 80,
-          "y": 160,
-          "entry": [],
-          "exit": []
-        }
-      ],
-      "transitions": [
-        {
-          "id": "t_qomj5cz",
-          "from": "s_lz61tnz",
-          "to": "s_lz61tnz",
-          "sourceHandle": "bottom-left",
-          "targetHandle": "bottom-right",
-          "eventType": 0,
-          "phraseMode": 4,
-          "phraseIgnoreCase": true,
-          "minInterval": 0,
-          "timerId": 0,
-          "inputN": 1,
-          "edge": 0,
-          "guards": [],
-          "actions": [
-            {
-              "kind": 12,
-              "target": 0,
-              "varValue": 0,
-              "capture": 1,
-              "msgIdent": "",
-              "msgPhrase": "{$1}"
-            }
-          ],
-          "curveDelta": 102.41071765235804,
-          "labelT": 0.6720350793275432,
-          "phrase": "Set ((?:\\d{4}-?\\d\\d-?\\d\\d )?\\d\\d:?\\d\\d:?\\d\\d)"
-        }
-      ],
-      "junctions": [],
-      "timers": [
-        50
-      ],
-      "timerLabels": [
-        "Timer 1"
-      ],
-      "notes": "",
-      "timerRandom": [
-        true
-      ]
+      "timerRandom": [],
+      "userVars": []
     },
     {
       "name": "Pulse output by text message",
@@ -704,7 +265,8 @@
       "timerRandom": [
         false
       ],
-      "notes": ""
+      "notes": "",
+      "userVars": []
     },
     {
       "name": "Monitor inputs by text message",
@@ -1008,60 +570,276 @@
       "timerRandom": [
         false
       ],
-      "notes": ""
+      "notes": "",
+      "userVars": []
     },
     {
-      "name": "Started message when radio is first connected",
+      "name": "Set date/time from text message",
       "targetSlot": 184,
-      "initialState": "s_ni93rs7",
+      "initialState": "s_lz61tnz",
       "states": [
         {
-          "id": "s_ni93rs7",
-          "name": "Starting up",
-          "x": 50,
-          "y": -79,
+          "id": "s_lz61tnz",
+          "name": "Idle",
+          "x": 80,
+          "y": 160,
           "entry": [],
-          "exit": []
-        },
-        {
-          "id": "s_heqs5wk",
-          "name": "System started",
-          "x": 15.5,
-          "y": 41,
-          "entry": [
-            {
-              "kind": 7,
-              "target": 1,
-              "msgIdent": "G1",
-              "msgPhrase": "System started"
-            }
-          ],
           "exit": []
         }
       ],
       "transitions": [
         {
-          "id": "t_o3ctqy7",
-          "from": "s_ni93rs7",
-          "to": "s_heqs5wk",
-          "sourceHandle": "bottom",
-          "targetHandle": "top",
-          "eventType": 5,
-          "phraseMode": 0,
-          "phraseIgnoreCase": false,
+          "id": "t_qomj5cz",
+          "from": "s_lz61tnz",
+          "to": "s_lz61tnz",
+          "sourceHandle": "bottom-left",
+          "targetHandle": "bottom-right",
+          "eventType": 0,
+          "phraseMode": 4,
+          "phraseIgnoreCase": true,
           "minInterval": 0,
           "timerId": 0,
           "inputN": 1,
           "edge": 0,
           "guards": [],
-          "actions": []
+          "actions": [
+            {
+              "kind": 12,
+              "target": 0,
+              "varValue": 0,
+              "capture": 1,
+              "msgIdent": "",
+              "msgPhrase": "{$1}"
+            }
+          ],
+          "curveDelta": 102.41071765235804,
+          "labelT": 0.6720350793275432,
+          "phrase": "Set ((?:\\d{4}-?\\d\\d-?\\d\\d )?\\d\\d:?\\d\\d:?\\d\\d)"
         }
       ],
       "junctions": [],
-      "timers": [],
-      "timerLabels": [],
-      "timerRandom": [],
-      "notes": ""
+      "timers": [
+        50
+      ],
+      "timerLabels": [
+        "Timer 1"
+      ],
+      "notes": "",
+      "timerRandom": [
+        true
+      ],
+      "userVars": []
+    },
+    {
+      "name": "Mexican Wave 2",
+      "targetSlot": 10,
+      "initialState": "s_sdrofm3",
+      "states": [
+        {
+          "id": "s_sdrofm3",
+          "name": "Idle",
+          "x": 150,
+          "y": -39,
+          "entry": [],
+          "exit": []
+        },
+        {
+          "id": "s_202ql3r",
+          "name": "Waving",
+          "x": 60,
+          "y": 80,
+          "entry": [
+            {
+              "kind": 8,
+              "target": 0,
+              "varValue": 1
+            },
+            {
+              "kind": 8,
+              "target": 1,
+              "varValue": 0
+            }
+          ],
+          "exit": [],
+          "initialChild": "s_lsfislj",
+          "width": 265,
+          "height": 272
+        },
+        {
+          "id": "s_lsfislj",
+          "name": "Output on",
+          "x": 47.5,
+          "y": 75,
+          "entry": [
+            {
+              "kind": 1,
+              "target": 1,
+              "targetVar": 128
+            },
+            {
+              "kind": 4,
+              "target": 0
+            }
+          ],
+          "exit": [
+            {
+              "kind": 2,
+              "target": 1,
+              "targetVar": 128
+            },
+            {
+              "kind": 9,
+              "target": 0
+            }
+          ],
+          "parent": "s_202ql3r"
+        }
+      ],
+      "transitions": [
+        {
+          "id": "t_pq1uct3",
+          "from": "s_sdrofm3",
+          "to": "s_202ql3r",
+          "sourceHandle": "right",
+          "targetHandle": "corner-top-right",
+          "eventType": 0,
+          "phraseMode": 0,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "phrase": "Wave",
+          "curveDelta": -131.3083793159475,
+          "labelT": 0.5865246812916415
+        },
+        {
+          "id": "t_wemfet5",
+          "from": "s_lsfislj",
+          "to": "s_lsfislj",
+          "sourceHandle": "corner-bottom-left",
+          "targetHandle": "bottom-left",
+          "eventType": 1,
+          "phraseMode": 0,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "curveDelta": 160.42756842956084,
+          "labelT": 0.3302103933810897
+        },
+        {
+          "id": "t_cj5kyb0",
+          "from": "s_lsfislj",
+          "to": "s_lsfislj",
+          "sourceHandle": "bottom-right",
+          "targetHandle": "corner-bottom-right",
+          "eventType": 3,
+          "phraseMode": 0,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [
+            {
+              "type": 4,
+              "param": 0,
+              "varId": 128,
+              "op": 0,
+              "value": 4
+            }
+          ],
+          "actions": [
+            {
+              "kind": 8,
+              "target": 0,
+              "varValue": 1
+            }
+          ],
+          "curveDelta": -29.191142525608754,
+          "labelT": 0.6128959865252427
+        },
+        {
+          "id": "t_ky6mxnj",
+          "from": "s_202ql3r",
+          "to": "s_sdrofm3",
+          "sourceHandle": "top-left",
+          "targetHandle": "bottom-left",
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 2,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "curveDelta": -80.53248675826472,
+          "labelT": 0.4131620981603725
+        },
+        {
+          "id": "t_joxu0k9",
+          "from": "s_202ql3r",
+          "to": "s_sdrofm3",
+          "sourceHandle": "corner-top-left",
+          "targetHandle": "left",
+          "eventType": 0,
+          "phraseMode": 0,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "curveDelta": -169.75346278748816,
+          "labelT": 0.431883298162723,
+          "phrase": "Stop"
+        },
+        {
+          "id": "t_khqmfhi",
+          "from": "s_sdrofm3",
+          "to": "s_202ql3r",
+          "sourceHandle": "corner-bottom-right",
+          "targetHandle": "top-right",
+          "eventType": 2,
+          "phraseMode": 0,
+          "phraseIgnoreCase": true,
+          "minInterval": 0,
+          "timerId": 0,
+          "inputN": 1,
+          "edge": 0,
+          "guards": [],
+          "actions": [],
+          "curveDelta": -124.80054380982116,
+          "labelT": 0.519386836775347
+        }
+      ],
+      "junctions": [],
+      "timers": [
+        3
+      ],
+      "timerLabels": [
+        "Timer 1"
+      ],
+      "timerRandom": [
+        false
+      ],
+      "notes": "",
+      "userVars": [
+        {
+          "name": "Active output"
+        },
+        {
+          "name": "Loop counter"
+        }
+      ]
     }
   ]
 }
